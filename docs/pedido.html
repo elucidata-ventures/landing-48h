@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fazer meu pedido — Site em 48h</title>
+<meta name="description" content="Reserve o seu site de 1 página com botão de WhatsApp. Não é cobrança: é um pedido.">
+<meta name="theme-color" content="#0e6b4f">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230e6b4f'/><text x='16' y='23' font-size='17' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'>48</text></svg>">
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#14201c; --muted:#5d6b66; --bg:#fff; --soft:#f4f7f5; --line:#e2e9e5;
+  --brand:#0e6b4f; --brand-d:#0a5340; --err:#a63b3b; --err-bg:#fdf2f2;
+  --warn:#8a5a00; --warn-bg:#fff8e8; --radius:14px;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:600px;margin:0 auto;padding:0 20px 44px}
+h1{font-size:27px;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin:0 0 10px}
+h2{font-size:17px;font-weight:700;margin:0 0 10px}
+p{margin:0 0 14px}
+a{color:var(--brand-d)}
+.muted{color:var(--muted);font-size:15px}
+
+.top{padding:16px 0 4px;display:flex;align-items:center;gap:9px}
+.mark{width:30px;height:30px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.mark-t{font-weight:700;font-size:15px}
+.back{margin-left:auto;font-size:14.5px;text-decoration:none}
+
+.refbar{display:none;background:#e8f5ef;border:1px solid #bfe0d2;border-radius:var(--radius);padding:12px 14px;margin:14px 0 0;font-size:15px}
+.refbar.on{display:block}
+.refbar b{display:block;font-size:16.5px}
+
+.note{background:var(--soft);border:1px solid var(--line);border-left:4px solid var(--brand);
+  border-radius:10px;padding:13px 15px;font-size:15px;margin:18px 0 24px}
+.note b{display:block;margin-bottom:3px}
+
+form{margin:0}
+.field{margin-bottom:20px}
+label{display:block;font-weight:700;font-size:16px;margin-bottom:6px}
+label .opt{font-weight:400;color:var(--muted);font-size:14px}
+input[type=text],input[type=tel],input[type=email]{
+  width:100%;font:inherit;font-size:17px;padding:14px 14px;min-height:52px;
+  border:1.5px solid #cdd8d3;border-radius:11px;background:#fff;color:var(--ink);
+}
+input:focus{outline:0;border-color:var(--brand);box-shadow:0 0 0 3px rgba(14,107,79,.15)}
+input[aria-invalid=true]{border-color:var(--err);background:var(--err-bg)}
+.hint{font-size:14px;color:var(--muted);margin-top:5px}
+.err{display:none;font-size:14.5px;color:var(--err);margin-top:6px;font-weight:600}
+.err.on{display:block}
+
+/* escolha de intenção */
+fieldset{border:0;margin:0 0 22px;padding:0}
+legend{font-weight:700;font-size:16px;margin-bottom:8px;padding:0}
+.choice{display:block;border:1.5px solid #cdd8d3;border-radius:11px;padding:14px;margin-bottom:10px;cursor:pointer;min-height:56px}
+.choice:last-child{margin-bottom:0}
+.choice input{position:absolute;opacity:0;width:0;height:0}
+.choice .row{display:flex;align-items:flex-start;gap:11px}
+.dot{flex:0 0 auto;width:22px;height:22px;border-radius:50%;border:2px solid #b7c4bf;margin-top:1px;position:relative;background:#fff}
+.choice input:checked ~ .row .dot{border-color:var(--brand)}
+.choice input:checked ~ .row .dot::after{content:"";position:absolute;inset:3px;border-radius:50%;background:var(--brand)}
+.choice:has(input:checked){border-color:var(--brand);background:#f2f9f6}
+.choice input:focus-visible ~ .row .dot{box-shadow:0 0 0 3px rgba(14,107,79,.25)}
+.choice .t{font-weight:700;font-size:16.5px;display:block}
+.choice .d{font-size:14.5px;color:var(--muted);display:block;margin-top:2px}
+
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+.btn{
+  display:block;width:100%;text-align:center;text-decoration:none;
+  background:var(--brand);color:#fff;font-weight:700;font-size:18px;
+  padding:17px 18px;border-radius:var(--radius);border:0;cursor:pointer;
+  min-height:56px;box-shadow:0 2px 0 var(--brand-d);font-family:inherit;
+}
+.btn:active{transform:translateY(1px);box-shadow:0 1px 0 var(--brand-d)}
+.btn[disabled]{opacity:.6;cursor:progress;box-shadow:none}
+.btn-ghost{background:#fff;color:var(--brand-d);border:1.5px solid var(--brand);box-shadow:none;margin-top:10px}
+.btn-note{display:block;font-weight:400;font-size:13px;opacity:.9;margin-top:2px}
+
+/* painel de resultado */
+#out{display:none;margin-top:6px}
+#out.on{display:block}
+.panel{border-radius:var(--radius);padding:18px;border:1px solid}
+.panel h2{font-size:19px}
+.panel.warn{background:var(--warn-bg);border-color:#e8d091;color:#4a3a10}
+.panel.warn a{color:#6b4a00}
+.panel.ok{background:#e8f5ef;border-color:#bfe0d2}
+pre.data{
+  white-space:pre-wrap;word-break:break-word;background:#fff;border:1px solid var(--line);
+  border-radius:10px;padding:13px;font:14.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  margin:12px 0;color:var(--ink);
+}
+.copied{font-size:14.5px;font-weight:700;color:var(--brand-d);margin-top:8px;display:none}
+.copied.on{display:block}
+
+footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+footer p{margin:0 0 8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="mark">48</div>
+    <div class="mark-t">Site em 48h</div>
+    <a class="back" href="index.html">Ver a oferta</a>
+  </div>
+
+  <div class="refbar" id="refbar">
+    Pedido referente ao preview de
+    <b id="refName">seu negócio</b>
+  </div>
+
+  <h1>Fazer meu pedido</h1>
+  <p class="muted">Leva menos de um minuto.</p>
+
+  <div class="note">
+    <b>Isto é um pedido, não uma cobrança.</b>
+    Nada é debitado agora e não pedimos cartão. Você só confirma que quer o site;
+    a gente responde no WhatsApp para acertar os detalhes e o pagamento — com nota fiscal.
+  </div>
+
+  <form id="f" novalidate>
+    <div class="field">
+      <label for="nome">Seu nome</label>
+      <input id="nome" name="nome" type="text" autocomplete="name" enterkeyhint="next" maxlength="80" required>
+      <div class="err" id="e-nome">Escreva seu nome para a gente saber com quem falar.</div>
+    </div>
+
+    <div class="field">
+      <label for="negocio">Nome do negócio</label>
+      <input id="negocio" name="negocio" type="text" autocomplete="organization" enterkeyhint="next" maxlength="90" required>
+      <div class="err" id="e-negocio">Escreva o nome do seu negócio.</div>
+    </div>
+
+    <div class="field">
+      <label for="whatsapp">WhatsApp com DDD</label>
+      <input id="whatsapp" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel"
+             enterkeyhint="next" maxlength="20" placeholder="(15) 99999-9999" required>
+      <div class="hint">É por aqui que a gente responde. É o número que vai no botão do site.</div>
+      <div class="err" id="e-whatsapp">Confira o número: precisa ter DDD + 8 ou 9 dígitos.</div>
+    </div>
+
+    <div class="field">
+      <label for="email">E-mail <span class="opt">(opcional)</span></label>
+      <input id="email" name="email" type="email" inputmode="email" autocomplete="email"
+             enterkeyhint="done" maxlength="100">
+      <div class="err" id="e-email">Esse e-mail parece incompleto. Corrija ou deixe em branco.</div>
+    </div>
+
+    <fieldset>
+      <legend>O que você quer agora?</legend>
+
+      <label class="choice" for="i1">
+        <input type="radio" id="i1" name="intencao" value="Quero contratar" required>
+        <span class="row">
+          <span class="dot" aria-hidden="true"></span>
+          <span>
+            <span class="t">Quero contratar</span>
+            <span class="d">Pode preparar o meu. R$497 uma vez + R$69/mês, combinados por WhatsApp.</span>
+          </span>
+        </span>
+      </label>
+
+      <label class="choice" for="i2">
+        <input type="radio" id="i2" name="intencao" value="Quero saber mais antes">
+        <span class="row">
+          <span class="dot" aria-hidden="true"></span>
+          <span>
+            <span class="t">Quero saber mais antes</span>
+            <span class="d">Tenho dúvidas. Me chama sem empurrar venda.</span>
+          </span>
+        </span>
+      </label>
+
+      <div class="err" id="e-intencao" style="margin-top:8px">Escolha uma das duas opções.</div>
+    </fieldset>
+
+    <div class="hp" aria-hidden="true">
+      <label for="_honey">Deixe em branco</label>
+      <input id="_honey" name="_honey" type="text" tabindex="-1" autocomplete="off">
+    </div>
+
+    <button class="btn" id="submit" type="submit">
+      Enviar meu pedido
+      <span class="btn-note">Sem cartão. Sem cobrança.</span>
+    </button>
+  </form>
+
+  <div id="out" aria-live="polite"></div>
+
+  <footer>
+    <p>Seus dados são usados só para a gente te responder sobre este site. Não vendemos, não repassamos e não cadastramos você em lista nenhuma. Pediu para apagar, a gente apaga.</p>
+    <p>Nenhum pagamento é processado neste site. Se alguém pedir dados do seu cartão em nome dele, desconfie.</p>
+  </footer>
+
+</div>
+
+<script src="m.js" data-hit="pedido"></script>
+<script>
+/* ============================================================================
+   CONFIGURAÇÃO — é a ÚNICA coisa que precisa mudar para o pedido chegar até nós.
+   ============================================================================
+   ENDPOINT: URL que aceita POST (form-urlencoded) e responde 2xx com CORS liberado.
+   Preencha e o formulário passa a funcionar de ponta a ponta, sem mais nenhuma
+   alteração em nenhum arquivo.
+       Exemplo pronto (sem criar conta, só um e-mail que exista):
+       const ENDPOINT = "https://formsubmit.co/ajax/SEU-EMAIL@gmail.com";
+============================================================================ */
+const ENDPOINT = null;
+
+/* -- Opcionais. Só são usados se ENDPOINT for null. Deixe null se não tiver. -- */
+const WHATSAPP_DESTINO = null;   // ex.: "5515999999999"  (nosso número, com 55)
+const EMAIL_CONTATO    = null;   // ex.: "contato@exemplo.com"
+/* ========================================================================= */
+
+(function () {
+  'use strict';
+
+  var LS_KEY = 'g00108_pedido_pendente';
+  var f = document.getElementById('f');
+  var out = document.getElementById('out');
+  var btn = document.getElementById('submit');
+
+  /* ---------- querystring: ?ref=<id do preview> &n=<nome do negócio> ---------- */
+  function q(name) {
+    var m = new RegExp('[?&]' + name + '=([^&#]*)').exec(location.search);
+    if (!m) return '';
+    try { return decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { return ''; }
+  }
+  var REF = q('ref').slice(0, 60);
+  var NOME_NEG = q('n').slice(0, 90);
+
+  if (REF) {
+    if (NOME_NEG) { document.getElementById('refName').textContent = NOME_NEG; }
+    document.getElementById('refbar').className = 'refbar on';
+    if (window.M) { M.hit('pedido-ref-' + REF); }
+  }
+  if (NOME_NEG) { document.getElementById('negocio').value = NOME_NEG; }
+
+  // links internos preservam o ref (caminhos relativos: funcionam em subpasta)
+  if (location.search) {
+    var back = document.querySelector('.back');
+    if (back) { back.setAttribute('href', 'index.html' + location.search); }
+  }
+
+  /* ------------------------------ validação ------------------------------ */
+  function setErr(id, on) {
+    var e = document.getElementById('e-' + id);
+    var i = document.getElementById(id);
+    if (e) { e.className = on ? 'err on' : 'err'; }
+    if (i) { i.setAttribute('aria-invalid', on ? 'true' : 'false'); }
+  }
+  function digits(s) { return (s || '').replace(/\D+/g, ''); }
+
+  function validate(d) {
+    var bad = null;
+    var okNome = d.nome.length >= 2;
+    var okNeg  = d.negocio.length >= 2;
+    var dg     = digits(d.whatsapp);
+    var okWa   = dg.length >= 10 && dg.length <= 13;
+    var okMail = !d.email || /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(d.email);
+    var okInt  = !!d.intencao;
+
+    setErr('nome', !okNome);       if (!okNome && !bad) bad = 'nome';
+    setErr('negocio', !okNeg);     if (!okNeg && !bad) bad = 'negocio';
+    setErr('whatsapp', !okWa);     if (!okWa && !bad) bad = 'whatsapp';
+    setErr('email', !okMail);      if (!okMail && !bad) bad = 'email';
+    var ei = document.getElementById('e-intencao');
+    ei.className = okInt ? 'err' : 'err on';
+    if (!okInt && !bad) bad = 'i1';
+
+    if (bad) {
+      var el = document.getElementById(bad);
+      if (el) { el.focus(); el.scrollIntoView({ block: 'center', behavior: 'smooth' }); }
+      return false;
+    }
+    return true;
+  }
+
+  /* ------------------------------- payload ------------------------------- */
+  function read() {
+    var r = f.querySelector('input[name=intencao]:checked');
+    return {
+      nome: f.nome.value.trim(),
+      negocio: f.negocio.value.trim(),
+      whatsapp: f.whatsapp.value.trim(),
+      email: f.email.value.trim(),
+      intencao: r ? r.value : '',
+      ref: REF,
+      quando: new Date().toISOString(),
+      origem: location.href.slice(0, 300)
+    };
+  }
+
+  function resumo(d) {
+    return 'PEDIDO — Site em 48h\n' +
+      'Intenção: ' + d.intencao + '\n' +
+      'Nome: ' + d.nome + '\n' +
+      'Negócio: ' + d.negocio + '\n' +
+      'WhatsApp: ' + d.whatsapp + '\n' +
+      (d.email ? 'E-mail: ' + d.email + '\n' : '') +
+      (d.ref ? 'Preview: ' + d.ref + '\n' : '') +
+      'Data: ' + new Date(d.quando).toLocaleString('pt-BR');
+  }
+
+  function body(d) {
+    var p = new URLSearchParams();
+    p.set('nome', d.nome);
+    p.set('negocio', d.negocio);
+    p.set('whatsapp', d.whatsapp);
+    p.set('email', d.email);
+    p.set('intencao', d.intencao);
+    p.set('ref', d.ref);
+    p.set('quando', d.quando);
+    p.set('origem', d.origem);
+    // campos que o FormSubmit entende e que endpoints genéricos ignoram
+    p.set('_subject', 'Pedido G001-08 · ' + d.intencao + ' · ' + d.negocio);
+    p.set('_template', 'table');
+    p.set('_captcha', 'false');
+    if (d.email) { p.set('_replyto', d.email); }
+    return p;
+  }
+
+  // POST "simples" (sem preflight). Só considera enviado se a resposta for 2xx.
+  function enviar(d) {
+    return fetch(ENDPOINT, {
+      method: 'POST',
+      body: body(d),
+      headers: { 'Accept': 'application/json' }
+    }).then(function (r) {
+      if (!r.ok) { throw new Error('HTTP ' + r.status); }
+      return true;
+    });
+  }
+
+  /* --------------------------- guarda / reenvio --------------------------- */
+  function guardar(d) {
+    try {
+      var arr = JSON.parse(localStorage.getItem(LS_KEY) || '[]');
+      arr.push(d);
+      localStorage.setItem(LS_KEY, JSON.stringify(arr.slice(-5)));
+    } catch (e) {}
+  }
+  function pendentes() {
+    try { return JSON.parse(localStorage.getItem(LS_KEY) || '[]'); } catch (e) { return []; }
+  }
+  function limpar() { try { localStorage.removeItem(LS_KEY); } catch (e) {} }
+
+  /* ------------------------------- painéis ------------------------------- */
+  function mostrar(html) {
+    out.innerHTML = html;
+    out.className = 'on';
+    out.scrollIntoView({ block: 'start', behavior: 'smooth' });
+  }
+  function esc(s) {
+    return String(s).replace(/[&<>"]/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+    });
+  }
+
+  // Fallback honesto: NUNCA dizemos que recebemos algo que não recebemos.
+  function painelNaoEnviado(d, motivo) {
+    f.style.display = 'none';
+    mostrar(
+      '<div class="panel warn">' +
+        '<h2>Seu pedido ainda não chegou até nós</h2>' +
+        '<p>Guardamos o que você escreveu <b>aqui no seu celular</b>, mas o canal de resposta ' +
+        'deste site ainda está sendo ligado' + (motivo ? ' (' + esc(motivo) + ')' : '') +
+        '. Não vamos fingir que recebemos.</p>' +
+        '<p><b>O que resolve em 10 segundos:</b> copie o resumo abaixo e responda com ele ' +
+        'a mesma mensagem ou e-mail que te trouxe até aqui. A gente cuida do resto.</p>' +
+        '<pre class="data" id="resumo">' + esc(resumo(d)) + '</pre>' +
+        '<button class="btn" type="button" id="copiar">Copiar meus dados</button>' +
+        '<div class="copied" id="copiado">Copiado. Agora é só colar na resposta.</div>' +
+        '<p style="margin-top:14px;font-size:14.5px">Se você voltar a esta página depois que o ' +
+        'canal estiver ligado, o pedido é enviado sozinho — não precisa preencher de novo.</p>' +
+      '</div>'
+    );
+    var b = document.getElementById('copiar');
+    b.addEventListener('click', function () {
+      var txt = resumo(d);
+      function ok() { document.getElementById('copiado').className = 'copied on'; }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(txt).then(ok, selecionar);
+      } else { selecionar(); }
+      function selecionar() {
+        var pre = document.getElementById('resumo');
+        var rg = document.createRange(); rg.selectNodeContents(pre);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(rg);
+        try { document.execCommand('copy'); ok(); } catch (e) {}
+      }
+    });
+  }
+
+  // Canal manual (WhatsApp/e-mail): abrimos pronto, mas só está enviado se a pessoa enviar.
+  function painelManual(d, url, canal) {
+    f.style.display = 'none';
+    mostrar(
+      '<div class="panel warn">' +
+        '<h2>Falta 1 toque: enviar</h2>' +
+        '<p>Seu pedido já está escrito. Se o ' + esc(canal) + ' não abriu sozinho, ' +
+        'toque no botão abaixo: ele abre com a mensagem pronta e você só dá enviar. ' +
+        '<b>Enquanto você não enviar, o pedido não chega até nós</b> — e a gente não ' +
+        'vai fingir que chegou.</p>' +
+        '<a class="btn" href="' + esc(url) + '" target="_blank" rel="noopener">Abrir o ' + esc(canal) + ' com meu pedido</a>' +
+        '<p style="margin-top:14px;font-size:14.5px">Prefere não sair daqui? Responda a mesma ' +
+        'mensagem em que você recebeu o link do seu site — vale exatamente igual.</p>' +
+        '<pre class="data">' + esc(resumo(d)) + '</pre>' +
+      '</div>'
+    );
+    try { window.open(url, '_blank', 'noopener'); } catch (e) {}
+  }
+
+  /* ------------------------------- submit -------------------------------- */
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    if (f._honey.value) { return; }          // bot
+    var d = read();
+    if (!validate(d)) { return; }
+
+    // Métrica de Gate 1: conta a intenção mesmo se o envio falhar.
+    if (window.M) {
+      var k = d.intencao === 'Quero contratar' ? 'pedido-contratar' : 'pedido-saber-mais';
+      M.hit(k);
+      if (d.ref) { M.hit(k + '-ref-' + d.ref); }
+    }
+
+    if (ENDPOINT) {
+      btn.disabled = true;
+      btn.textContent = 'Enviando...';
+      enviar(d).then(function () {
+        limpar();
+        location.href = 'obrigado.html' + (d.ref ? '?ref=' + encodeURIComponent(d.ref) : '');
+      }).catch(function (err) {
+        btn.disabled = false;
+        btn.textContent = 'Enviar meu pedido';
+        guardar(d);
+        painelNaoEnviado(d, 'falha de envio: ' + (err && err.message ? err.message : 'rede'));
+      });
+      return;
+    }
+
+    if (WHATSAPP_DESTINO) {
+      guardar(d);
+      painelManual(d, 'https://wa.me/' + encodeURIComponent(WHATSAPP_DESTINO) +
+        '?text=' + encodeURIComponent(resumo(d)), 'WhatsApp');
+      return;
+    }
+    if (EMAIL_CONTATO) {
+      guardar(d);
+      painelManual(d, 'mailto:' + EMAIL_CONTATO +
+        '?subject=' + encodeURIComponent('Pedido Site em 48h - ' + d.negocio) +
+        '&body=' + encodeURIComponent(resumo(d)), 'e-mail');
+      return;
+    }
+
+    guardar(d);
+    painelNaoEnviado(d, '');
+  });
+
+  /* ------ reenvio automático: pedidos guardados antes do ENDPOINT existir ------ */
+  if (ENDPOINT) {
+    var pend = pendentes();
+    if (pend.length) {
+      var envios = pend.map(function (d) { return enviar(d).catch(function () { return null; }); });
+      Promise.all(envios).then(function () {
+        limpar();
+        mostrar('<div class="panel ok"><h2>Um pedido antigo seu foi enviado agora</h2>' +
+          '<p>Você tinha preenchido este formulário antes, quando nosso canal ainda não estava ' +
+          'ligado. Acabamos de enviar. Vamos te chamar no WhatsApp.</p></div>');
+      });
+    }
+  }
+})();
+</script>
+</body>
+</html>

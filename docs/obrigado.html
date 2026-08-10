@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pedido enviado — Site em 48h</title>
+<meta name="theme-color" content="#0e6b4f">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230e6b4f'/><text x='16' y='23' font-size='17' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'>48</text></svg>">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{--ink:#14201c;--muted:#5d6b66;--line:#e2e9e5;--brand:#0e6b4f;--brand-d:#0a5340;--radius:14px}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#fff;color:var(--ink);
+  font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:600px;margin:0 auto;padding:0 20px 44px}
+.top{padding:16px 0 4px;display:flex;align-items:center;gap:9px}
+.mark{width:30px;height:30px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.mark-t{font-weight:700;font-size:15px}
+.tick{width:62px;height:62px;border-radius:50%;background:#e8f5ef;border:2px solid #bfe0d2;
+  display:flex;align-items:center;justify-content:center;margin:26px 0 18px;
+  color:var(--brand);font-size:31px;font-weight:800;line-height:1}
+h1{font-size:28px;font-weight:800;letter-spacing:-.02em;line-height:1.2;margin:0 0 12px}
+h2{font-size:17px;font-weight:700;margin:26px 0 10px}
+p{margin:0 0 14px}
+a{color:var(--brand-d)}
+.muted{color:var(--muted);font-size:15px}
+.refbar{display:none;background:#e8f5ef;border:1px solid #bfe0d2;border-radius:var(--radius);
+  padding:12px 14px;margin:0 0 18px;font-size:15px}
+.refbar.on{display:block}
+ol{margin:0 0 18px;padding-left:22px}
+ol li{margin-bottom:9px}
+.box{border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;font-size:15.5px;background:#f4f7f5}
+.box b{display:block;margin-bottom:4px}
+.btn{display:block;width:100%;text-align:center;text-decoration:none;background:#fff;color:var(--brand-d);
+  border:1.5px solid var(--brand);font-weight:700;font-size:17px;padding:15px 18px;border-radius:var(--radius);
+  min-height:52px;margin-top:22px}
+footer{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="top">
+    <div class="mark">48</div>
+    <div class="mark-t">Site em 48h</div>
+  </div>
+
+  <div class="tick" aria-hidden="true">✓</div>
+
+  <h1>Pedido enviado. Recebemos.</h1>
+
+  <div class="refbar" id="refbar">Preview: <b id="refName"></b></div>
+
+  <p>Obrigado. Agora é com a gente.</p>
+
+  <h2>O que acontece agora</h2>
+  <ol>
+    <li><b>Em até 1 dia útil</b> você recebe uma mensagem nossa no WhatsApp que você informou.</li>
+    <li>A gente confirma os detalhes do site: telefone, horário, fotos, o que você quer mudar.</li>
+    <li>Você dá o "pode subir" — e só a partir daí existe cobrança, combinada com você e com nota fiscal.</li>
+    <li>Em até 48 horas depois do seu "ok", o site está no ar.</li>
+  </ol>
+
+  <div class="box">
+    <b>Nada foi cobrado.</b>
+    Não pedimos e não temos dados do seu cartão. Se alguém entrar em contato pedindo pagamento
+    antecipado por link ou cartão em nome deste site, desconfie e nos avise.
+  </div>
+
+  <p class="muted" style="margin-top:18px">
+    Mudou de ideia ou quer que a gente apague seus dados? Responda a mesma mensagem por onde você
+    chegou aqui pedindo o cancelamento — apagamos e não insistimos.
+  </p>
+
+  <a class="btn" href="index.html">Voltar para a página do serviço</a>
+
+  <footer>
+    <p><b>Site em 48h</b> — página única com botão de WhatsApp para negócios locais.
+    Não temos vínculo com o Google, com a Meta nem com o WhatsApp.</p>
+  </footer>
+
+</div>
+
+<script src="m.js" data-hit="obrigado"></script>
+<script>
+(function () {
+  var m = /[?&]ref=([^&#]*)/.exec(location.search || '');
+  if (!m || !m[1]) return;
+  var ref = '';
+  try { ref = decodeURIComponent(m[1].replace(/\+/g, ' ')).slice(0, 60); } catch (e) { return; }
+  if (!ref) return;
+  document.getElementById('refName').textContent = ref;
+  document.getElementById('refbar').className = 'refbar on';
+  if (window.M) { M.hit('obrigado-ref-' + ref); }
+})();
+</script>
+</body>
+</html>

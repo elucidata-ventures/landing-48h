@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt-BR" class="no-ref">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Site em 48h com botão de WhatsApp — R$497 + R$69/mês</title>
+<meta name="description" content="Montamos o site de 1 página do seu negócio a partir do que já está público no Google. Você vê pronto antes de pagar. No ar em 48 horas.">
+<meta name="theme-color" content="#0e6b4f">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://elucidata-ventures.github.io/landing-48h/">
+<!-- a distribuição desta landing é por link colado no WhatsApp: sem og:* o
+     link aparece como texto cru e perde a prévia (e a taxa de abertura) -->
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Site em 48h">
+<meta property="og:url" content="https://elucidata-ventures.github.io/landing-48h/">
+<meta property="og:title" content="Seu site pronto em 48 horas — e você vê antes de pagar">
+<meta property="og:description" content="Montamos a página do seu negócio com o que já está público no Google, com botão de WhatsApp no seu número. R$497 uma vez + R$69/mês. Você aprova antes de pagar.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Seu site pronto em 48 horas — e você vê antes de pagar">
+<meta name="twitter:description" content="Montamos a página do seu negócio com o que já está público no Google, com botão de WhatsApp no seu número. R$497 uma vez + R$69/mês. Você aprova antes de pagar.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230e6b4f'/><text x='16' y='23' font-size='17' font-family='sans-serif' font-weight='700' fill='%23fff' text-anchor='middle'>48</text></svg>">
+
+<!-- roda durante o parse: evita piscar entre as duas versões do título -->
+<script>
+(function(){
+  var s = location.search || '';
+  if (/[?&]ref=[^&#]+/.test(s)) { document.documentElement.className = 'has-ref'; }
+})();
+</script>
+
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --ink:#14201c; --muted:#5d6b66; --bg:#fff; --soft:#f4f7f5; --line:#e2e9e5;
+  --brand:#0e6b4f; --brand-d:#0a5340; --warn:#8a5a00; --warn-bg:#fff8e8;
+  --radius:14px;
+}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--bg); color:var(--ink);
+  font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:88px; /* espaço da barra fixa */
+}
+.wrap{max-width:600px;margin:0 auto;padding:0 20px}
+h1,h2,h3{line-height:1.2;margin:0 0 12px;letter-spacing:-.02em}
+h1{font-size:31px;font-weight:800}
+h2{font-size:22px;font-weight:700;margin-top:0}
+h3{font-size:17px;font-weight:700}
+p{margin:0 0 14px}
+a{color:var(--brand-d)}
+small{font-size:14px}
+.muted{color:var(--muted)}
+section{padding:34px 0;border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+
+/* topo */
+.top{padding:16px 0 4px;display:flex;align-items:center;gap:9px}
+.mark{width:30px;height:30px;border-radius:8px;background:var(--brand);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.mark-t{font-weight:700;font-size:15px}
+
+/* faixa do preview */
+.refbar{display:none;background:#e8f5ef;border:1px solid #bfe0d2;border-radius:var(--radius);padding:12px 14px;margin:14px 0 0;font-size:15px}
+.has-ref .refbar{display:block}
+.refbar b{display:block}
+
+/* headline condicional */
+.has-ref .h-cold,.no-ref .h-warm{display:none}
+
+/* hero */
+.hero{padding:22px 0 30px}
+.sub{font-size:18px;color:#3a4a44;margin-bottom:22px}
+.trust{font-size:15px;color:var(--muted);margin-top:14px}
+
+/* botões */
+.btn{
+  display:block;width:100%;text-align:center;text-decoration:none;
+  background:var(--brand);color:#fff;font-weight:700;font-size:18px;
+  padding:17px 18px;border-radius:var(--radius);border:0;cursor:pointer;
+  min-height:56px;box-shadow:0 2px 0 var(--brand-d);
+}
+.btn:active{transform:translateY(1px);box-shadow:0 1px 0 var(--brand-d)}
+.btn-note{display:block;font-weight:400;font-size:13px;opacity:.9;margin-top:2px}
+.btn-ghost{background:#fff;color:var(--brand-d);border:1.5px solid var(--brand);box-shadow:none}
+
+/* passos */
+ol.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+ol.steps li{position:relative;padding:0 0 20px 50px;counter-increment:s}
+ol.steps li::before{
+  content:counter(s);position:absolute;left:0;top:0;width:34px;height:34px;border-radius:50%;
+  background:var(--brand);color:#fff;font-weight:800;font-size:16px;
+  display:flex;align-items:center;justify-content:center;
+}
+ol.steps li::after{content:"";position:absolute;left:17px;top:38px;bottom:4px;width:2px;background:var(--line)}
+ol.steps li:last-child{padding-bottom:0}
+ol.steps li:last-child::after{display:none}
+ol.steps h3{margin-bottom:3px}
+ol.steps p{margin:0;color:var(--muted);font-size:15.5px}
+
+/* preço */
+.price{background:var(--soft);border:1px solid var(--line);border-radius:var(--radius);padding:22px;text-align:center}
+.price .big{font-size:38px;font-weight:800;letter-spacing:-.03em;display:block;line-height:1.1}
+.price .plus{font-size:20px;font-weight:700;display:block;margin-top:6px}
+.price .lbl{font-size:14px;color:var(--muted);display:block}
+.price hr{border:0;border-top:1px solid var(--line);margin:18px 0}
+.anchor{background:var(--warn-bg);border:1px solid #f0dcae;color:var(--warn);border-radius:10px;padding:11px 13px;font-size:14.5px;text-align:left;margin-top:16px}
+/* garantia ao lado do preço: verde de tranquilidade, não âmbar de alerta —
+   caixa amarela no momento da decisão é lida como advertência, não como promessa */
+.assure{background:#e8f5ef;border:1px solid #bfe0d2;color:var(--ink);border-radius:10px;padding:13px 15px;font-size:14.5px;text-align:left;margin-top:16px}
+.assure b{display:block;margin-bottom:3px;font-size:15.5px}
+.nofine{font-size:14.5px;color:var(--muted);margin-top:14px;text-align:left}
+.nofine li{margin-bottom:4px}
+.nofine ul{margin:6px 0 0;padding-left:20px}
+
+/* listas incluído / não incluído */
+.cols{display:grid;gap:18px}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:18px}
+.card h3{margin-bottom:10px}
+.card ul{list-style:none;margin:0;padding:0;font-size:15.5px}
+.card li{position:relative;padding:0 0 9px 26px}
+.card li::before{position:absolute;left:0;top:0;font-weight:700}
+.yes li::before{content:"✓";color:var(--brand)}
+.no li::before{content:"✕";color:#a63b3b}
+.no{background:#fbfbfb}
+
+/* faq */
+details{border-bottom:1px solid var(--line);padding:14px 0}
+details:first-of-type{border-top:1px solid var(--line)}
+summary{
+  font-weight:700;font-size:16.5px;cursor:pointer;list-style:none;
+  display:flex;justify-content:space-between;gap:12px;align-items:flex-start;min-height:28px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:22px;line-height:1;color:var(--brand);flex:0 0 auto;font-weight:700}
+details[open] summary::after{content:"–"}
+details p{margin:10px 0 2px;font-size:15.5px;color:#3a4a44}
+details p:last-child{margin-bottom:0}
+
+/* barra fixa */
+.sticky{
+  position:fixed;left:0;right:0;bottom:0;background:rgba(255,255,255,.97);
+  border-top:1px solid var(--line);padding:10px 20px calc(10px + env(safe-area-inset-bottom));
+  z-index:20;backdrop-filter:saturate(1.4) blur(6px);
+}
+.sticky .inner{max-width:600px;margin:0 auto}
+
+footer{padding:26px 0 34px;font-size:13.5px;color:var(--muted);border-top:1px solid var(--line)}
+footer p{margin:0 0 8px}
+
+@media (min-width:560px){
+  h1{font-size:38px}
+  .cols{grid-template-columns:1fr 1fr}
+  .btn{width:auto;display:inline-block;padding:17px 34px}
+  .sticky .btn{width:100%;display:block}
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <div class="top">
+    <div class="mark">48</div>
+    <div class="mark-t">Site em 48h</div>
+  </div>
+
+  <div class="refbar">
+    O preview do <b id="refName">seu negócio</b> já está montado.
+    <a id="refBack" href="#" hidden>Ver o preview de novo</a>
+  </div>
+
+  <header class="hero">
+    <h1>
+      <span class="h-warm">Seu site já está pronto. Quer colocar no ar?</span>
+      <span class="h-cold">Seu site pronto em 48 horas — e você vê antes de pagar.</span>
+    </h1>
+    <p class="sub">
+      A gente monta uma página só, com as suas informações que já estão públicas no Google,
+      e coloca um botão grande de WhatsApp que abre a conversa no <b>seu</b> número.
+    </p>
+    <a class="btn" href="pedido.html" data-cta="hero">
+      Fazer meu pedido
+      <span class="btn-note">Sem cartão. Sem pagar nada agora.</span>
+    </a>
+    <p class="trust">Você aprova o site antes de qualquer cobrança. Se não gostar, não paga e a gente apaga.</p>
+  </header>
+
+  <section>
+    <h2>Como funciona</h2>
+    <ol class="steps">
+      <li>
+        <h3>A gente já montou</h3>
+        <p>Pegamos o nome, endereço, telefone, horário e fotos que já estão públicos sobre o seu negócio e montamos a página. Você não preenche formulário nenhum, não manda arquivo, não explica nada.</p>
+      </li>
+      <li>
+        <h3>Você olha e aprova</h3>
+        <p>Você abre o link no celular e vê o site pronto. Pede as correções que quiser — nome errado, foto trocada, horário desatualizado. Só depois de você falar "pode subir" é que vira compra.</p>
+      </li>
+      <li>
+        <h3>No ar em 48 horas</h3>
+        <p>Em até 48 horas depois do seu "ok" o site está funcionando na internet, abrindo no celular, com o botão de WhatsApp ligado no seu número.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Quanto custa</h2>
+    <div class="price">
+      <span class="lbl">Uma única vez, para colocar no ar</span>
+      <span class="big">R$ 497</span>
+      <span class="plus">+ R$ 69 por mês</span>
+      <span class="lbl">hospedagem, ajustes e relatório de visitas</span>
+      <span class="lbl" style="margin-top:7px">o que dá R$ 2,30 por dia</span>
+      <hr>
+      <!-- O momento da decisão é este. A garantia estava só no FAQ, fechada dentro
+           de um <details> que a maioria não abre: quem olha o preço tem de ler a
+           reversibilidade na MESMA tela, não dois cliques depois. Nenhuma promessa
+           nova aqui — é a mesma do FAQ ("E se eu não gostar?"), trazida para cima. -->
+      <div class="assure">
+        <b>Você só paga depois de ver o site pronto.</b>
+        Primeiro a gente monta, você olha, pede as correções que quiser e aprova. O pagamento
+        é combinado só depois disso, por WhatsApp e com nota fiscal. E se você se arrepender
+        nos 7 primeiros dias em que o site estiver no ar, devolvemos os R$ 497
+        (art. 49 do Código de Defesa do Consumidor).
+      </div>
+      <div class="nofine">
+        Sem letra miúda, de verdade:
+        <ul>
+          <li>Não existe taxa de adesão, de instalação nem de cancelamento.</li>
+          <li>Não tem fidelidade: você cancela a mensalidade quando quiser, sem multa.</li>
+          <li>O preço é esse. Não sobe depois de um "período promocional" — não existe período promocional.</li>
+          <li>Não pedimos cartão nesta página. O pagamento é combinado por WhatsApp depois que você aprovar o site.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>O que está incluído</h2>
+    <div class="cols">
+      <div class="card yes">
+        <h3>Vem junto</h3>
+        <ul>
+          <li>Uma página, feita para o celular, que carrega rápido</li>
+          <li>Botão de WhatsApp que abre a conversa no seu número</li>
+          <li>Botão de ligar e botão de traçar rota até você</li>
+          <li>Seus serviços, horário de funcionamento e endereço</li>
+          <li>Suas fotos que já estão públicas (ou as que você mandar)</li>
+          <li>Hospedagem e cadeado de segurança (https)</li>
+          <li>Ajustes de texto, foto e horário sempre que precisar — é só pedir no WhatsApp</li>
+          <li>Relatório mensal: quantas pessoas entraram e quantas clicaram no WhatsApp</li>
+        </ul>
+      </div>
+      <div class="card no">
+        <h3>Não vem junto</h3>
+        <ul>
+          <li>Loja virtual, carrinho ou pagamento online</li>
+          <li>Sistema de agendamento ou de reservas</li>
+          <li>Blog ou site com várias páginas</li>
+          <li>Gestão das suas redes sociais</li>
+          <li>Anúncios pagos ou promessa de aparecer em primeiro no Google</li>
+          <li>Criação de logotipo do zero</li>
+          <li>Domínio próprio (.com.br) — é opcional e custa à parte, ver abaixo</li>
+          <li>E-mail profissional (@seunegocio)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Perguntas que todo mundo faz</h2>
+
+    <details>
+      <summary>E se eu não gostar?</summary>
+      <p>Você vê o site pronto antes de pagar qualquer coisa. Se não gostar e não quiser ajustar, você não paga nada e a gente apaga a página — não fica devendo, não fica cadastrado em lugar nenhum.</p>
+      <p>Se você aprovar, pagar, e nos primeiros 7 dias depois de entrar no ar se arrepender, devolvemos os R$ 497. É o direito de arrependimento do Código de Defesa do Consumidor (art. 49) e a gente respeita sem discussão.</p>
+    </details>
+
+    <details>
+      <summary>Preciso ter domínio próprio?</summary>
+      <p>Não precisa. O site já vai no ar num endereço que funciona, incluído no preço, sem você fazer nada.</p>
+      <p>Se um dia você quiser <b>seunegocio.com.br</b>, o registro é feito no Registro.br por volta de R$ 40 por ano, pago por você e <b>ficando no seu nome</b> — a gente aponta o site para lá sem cobrar nada a mais. Nunca registramos domínio no nosso nome: se você sair, o endereço é seu.</p>
+    </details>
+
+    <details>
+      <summary>Quem atualiza o site depois?</summary>
+      <p>Nós. Mudou o horário, o preço, o cardápio, o telefone, quer trocar uma foto? Você manda no WhatsApp e a gente altera. Está dentro dos R$ 69 por mês.</p>
+      <p>Você não precisa aprender painel nenhum, não tem senha para guardar e não tem programa para instalar.</p>
+    </details>
+
+    <details>
+      <summary>O WhatsApp é o meu mesmo?</summary>
+      <p>É o seu, o mesmo número que você já usa. O botão abre a conversa direto com você.</p>
+      <p>Não usamos número intermediário, não gravamos e não lemos suas conversas. Se você trocar de número, é só avisar que a gente troca no site.</p>
+    </details>
+
+    <details>
+      <summary>De onde vocês tiraram as informações do meu negócio?</summary>
+      <p>De cadastros públicos de mapas — nome, endereço, telefone e horário que qualquer pessoa vê ao pesquisar seu negócio na internet. Não acessamos nada privado, não temos senha sua e não compramos lista.</p>
+      <p>Se você não quiser o preview, responda pedindo para apagar e a gente apaga na hora, sem insistir.</p>
+    </details>
+
+    <details>
+      <summary>Como é o pagamento?</summary>
+      <p>Não é agora e não é nesta página. Aqui você só faz o pedido. Depois a gente te chama no WhatsApp, confirma os detalhes e combina a forma de pagamento com nota fiscal.</p>
+      <p>Se alguém pedir dados do seu cartão em nome deste site, desconfie: nós não pedimos.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Pronto para colocar no ar?</h2>
+    <p class="muted">O pedido leva menos de um minuto e não compromete você a nada. É só para a gente saber que pode preparar o seu.</p>
+    <a class="btn" href="pedido.html" data-cta="rodape">
+      Fazer meu pedido
+      <span class="btn-note">Sem cartão. Sem pagar nada agora.</span>
+    </a>
+  </section>
+
+  <footer>
+    <p><b>Site em 48h</b> — serviço de página única com botão de WhatsApp para negócios locais.</p>
+    <p>Não temos vínculo com o Google, com a Meta nem com o WhatsApp. Nenhum pagamento é processado neste site.</p>
+    <p>Dúvida antes de pedir? Faça o pedido marcando <b>"Quero saber mais antes"</b> — a gente responde sem empurrar venda.</p>
+  </footer>
+
+</div>
+
+<div class="sticky">
+  <div class="inner">
+    <a class="btn" href="pedido.html" data-cta="barra">Fazer meu pedido — sem pagar agora</a>
+  </div>
+</div>
+
+<script src="m.js" data-hit="landing"></script>
+<script>
+(function () {
+  // --- lê ?ref= (id do preview) e ?n= (nome do negócio, opcional) ---
+  function q(name) {
+    var m = new RegExp('[?&]' + name + '=([^&#]*)').exec(location.search);
+    if (!m) return '';
+    try { return decodeURIComponent(m[1].replace(/\+/g, ' ')); } catch (e) { return ''; }
+  }
+  var ref = q('ref').slice(0, 60);
+  var nome = q('n').slice(0, 80);
+
+  if (ref) {
+    if (nome) { document.getElementById('refName').textContent = nome; }
+    var back = document.getElementById('refBack');
+    // volta para o preview: docs/p/<ref>/  (caminho relativo, funciona em subpasta)
+    if (/^[A-Za-z0-9._-]+$/.test(ref)) {
+      back.setAttribute('href', 'p/' + ref + '/');
+      back.hidden = false;
+    }
+    if (window.M) { M.hit('landing-ref-' + ref); }
+  }
+
+  // --- carrega ref/n nos CTAs e conta o clique ---
+  var qs = location.search || '';
+  var links = document.querySelectorAll('a[data-cta]');
+  for (var i = 0; i < links.length; i++) {
+    (function (a) {
+      if (qs) { a.setAttribute('href', 'pedido.html' + qs); }
+      a.addEventListener('click', function () {
+        if (!window.M) return;
+        M.hit('cta-' + a.getAttribute('data-cta'));
+        if (ref) { M.hit('cta-ref-' + ref); }
+      });
+    })(links[i]);
+  }
+})();
+</script>
+</body>
+</html>
