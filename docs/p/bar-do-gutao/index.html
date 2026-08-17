@@ -233,6 +233,7 @@ footer .fnome{color:var(--ink);font-weight:700;font-size:15.5px;display:block;ma
 <div>Bar · Rua Visconde de Cairu</div>
 <div class="ftcta">Esta é uma <b>prévia</b> — o site ainda não está publicado no seu endereço. <a href="../../index.html?ref=bar-do-gutao&amp;n=Bar%20do%20Gut%C3%A3o">Quero colocar no ar</a></div>
 </div></footer>
-<script src="../../m.js" data-hit="preview-bar-do-gutao"></script>
+<script>/* sinal de visualizacao: envia SO o id deste preview (evento=preview_view). Sem IP, sem user-agent, sem cookie, sem geo. Falha em silencio e nao bloqueia o render. */
+(function(){try{var u="https://captura.elucidata.vc/v1/g001-08",b="evento=preview_view&preview=bar-do-gutao",t="application/x-www-form-urlencoded";if(navigator.sendBeacon&&navigator.sendBeacon(u,new Blob([b],{type:t})))return;if(window.fetch)fetch(u,{method:"POST",mode:"no-cors",cache:"no-store",keepalive:true,headers:{"Content-Type":t},body:b})["catch"](function(){});}catch(e){}})();</script>
 </body>
 </html>

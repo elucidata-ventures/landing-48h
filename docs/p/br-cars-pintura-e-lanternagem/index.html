@@ -231,6 +231,7 @@ footer .fnome{color:var(--ink);font-weight:700;font-size:15.5px;display:block;ma
 <div>Oficina mecânica · Rua Antônio Bezerra Paz, 251 · Campina Grande</div>
 <div class="ftcta">Esta é uma <b>prévia</b> — o site ainda não está publicado no seu endereço. <a href="../../index.html?ref=br-cars-pintura-e-lanternagem&amp;n=Br%27%20Cars%20Pintura%20e%20Lanternagem">Quero colocar no ar</a></div>
 </div></footer>
-<script src="../../m.js" data-hit="preview-br-cars-pintura-e-lanternagem"></script>
+<script>/* sinal de visualizacao: envia SO o id deste preview (evento=preview_view). Sem IP, sem user-agent, sem cookie, sem geo. Falha em silencio e nao bloqueia o render. */
+(function(){try{var u="https://captura.elucidata.vc/v1/g001-08",b="evento=preview_view&preview=br-cars-pintura-e-lanternagem",t="application/x-www-form-urlencoded";if(navigator.sendBeacon&&navigator.sendBeacon(u,new Blob([b],{type:t})))return;if(window.fetch)fetch(u,{method:"POST",mode:"no-cors",cache:"no-store",keepalive:true,headers:{"Content-Type":t},body:b})["catch"](function(){});}catch(e){}})();</script>
 </body>
 </html>
